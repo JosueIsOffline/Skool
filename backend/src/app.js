@@ -1,6 +1,8 @@
 const express = require("express")
 const app = express()
-import studentsRoutes from './routes/Students.routes'
+import studentsRoutes from './routes/People.routes'
+
+app.use(express.json())
 
 // ROUTES
 
