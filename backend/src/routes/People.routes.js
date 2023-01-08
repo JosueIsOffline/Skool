@@ -1,8 +1,8 @@
 const { Router } = require('express')
 const router = Router()
-const { getStudents, postStudents } = require('../controllers/People.controller')
+const { getStudents, postPerson } = require('../controllers/People.controller')
 
 router.get('/students', getStudents)
-router.post('/students', postStudents)
+router.post('/students', postPerson)
 
 export default router

@@ -5,7 +5,7 @@ export const getStudents = async (req, res) => {
     res.json(listOfPerson)
 }
 
-export const postStudents = async (req, res) => {
+export const postPerson = async (req, res) => {
     const postPerson = req.body
     await Person.create(postPerson)
     res.json(postPerson)
