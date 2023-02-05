@@ -32,10 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     })
 
     Person.associate = (models) => {
-       Person.hasMany(models.Per_rol, {
-            onDelete: "cascade"
-        })
-
+        
         Person.hasOne(models.User, {
             onDelete: "cascade"
         })

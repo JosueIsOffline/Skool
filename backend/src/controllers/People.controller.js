@@ -1,6 +1,6 @@
 const { Person } = require('../../models')
 
-export const getStudents = async (req, res) => {
+export const getPeople = async (req, res) => {
     const listOfPerson = await Person.findAll()
     res.json(listOfPerson)
 }
