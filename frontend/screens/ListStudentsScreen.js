@@ -1,19 +1,19 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const SettingsScreen = () => {
+const ListStudentsScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Settings Screen</Text>
+      <Text>ListStudentsScreen</Text>
     </View>
   )
 }
 
-export default SettingsScreen
+export default ListStudentsScreen
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1, 
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     }

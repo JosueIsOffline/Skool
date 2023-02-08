@@ -1,19 +1,21 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const SettingsScreen = () => {
+const PostById = ({navigation, route}) => {
   return (
     <View style={styles.container}>
-      <Text>Settings Screen</Text>
+      <Text>{route.params?.name}</Text>
+      <Text>@{route.params?.id}</Text>
+      <Text>{route.params?.tweet}</Text>
     </View>
   )
 }
 
-export default SettingsScreen
+export default PostById
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1, 
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     }

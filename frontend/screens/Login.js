@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native';
+import AsyncStorage  from '@react-native-async-storage/async-storage'
 import { StatusBar } from 'expo-status-bar';
-import { useState, useEffect } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import { login, getPeople } from '../api';
 
 
 // Components
 import Btn from '../components/Btn'
-import { AsyncLocalStorage } from 'async_hooks';
+
 
 
 const Login = ({ navigation }) => {
@@ -23,26 +23,29 @@ const Login = ({ navigation }) => {
 
     useEffect(() => {
         const checkLoginStatus = async () => {
-            const loginStatus = await AsyncLocalStorage.getItem('isAuthenticated')
+            const loginStatus = await AsyncStorage.getItem('isAuthenticated')
+            if(loginStatus === 'true') {
+                setIsAuthenticated(true)
+                navigation.navigate('HomeScreen')
+            }
         }
-
-    })
+        checkLoginStatus()
+    }, [])
     
     const handleChange = (name, value) => setUser({...user, [name]: value})
     
     const Login = async () => {
         const data = await login(user)
+
         if(data.token){
+          await AsyncStorage.setItem('isAuthenticated', 'true')
           setIsAuthenticated(true)
+          navigation.navigate('HomeScreen')
          //navigation.navigate('HomeScreen')
         }
         else{
             setError(data.error)
-        }
-
-        if(isAuthenticated) {
-            return navigation.navigate('HomeScreen')
-        }
+        }   
     }
 
     
@@ -52,9 +55,6 @@ const Login = ({ navigation }) => {
         // console.log(data[0].nombre)
     }
     
-      useEffect(() => {
-        loadPeople()
-      }, [])
 
     
   return (
