@@ -3,6 +3,7 @@ import AsyncStorage  from '@react-native-async-storage/async-storage'
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { login, getPeople } from '../api';
+import { AntDesign } from '@expo/vector-icons';
 
 
 // Components
@@ -16,6 +17,7 @@ const Login = ({ navigation }) => {
         correo: '',
         clave: ''
     })
+    const [hidePassword, setHidePassword] = useState(true)
     
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     
@@ -82,7 +84,8 @@ const Login = ({ navigation }) => {
             onChangeText={(text) => handleChange('clave', text)}
             value={user.clave}
         />
-
+    
+        
         <Text style={styles.forgotPassword}>Olvidaste tu contraseña?</Text>
         <Btn login={Login}/>
         

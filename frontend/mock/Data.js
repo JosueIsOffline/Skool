@@ -48,5 +48,5 @@ export const Data = [
         tweet:"1300🚀🥰 So glad to connect with new people from #techtwitter !!",
         like:"127",
         reply:"12",
-    },
+    }
 ]

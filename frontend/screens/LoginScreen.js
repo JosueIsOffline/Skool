@@ -7,6 +7,7 @@ import { AuthContext } from '../context/AuthContext';
 export default function LoginScreen() {
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
+  const [hidePassword, setHidePassword] = useState(true)
   
   const {login} = useContext(AuthContext)
   return (
@@ -41,15 +42,25 @@ export default function LoginScreen() {
           <TextInput 
             style={styles.input} 
             placeholder='Password'
-            secureTextEntry={true}
+            secureTextEntry={hidePassword}
             value={password}
             onChangeText={text => setPassword(text)}
           />  
 
+          <AntDesign 
+            onPress={() => setHidePassword(!hidePassword)}
+            style={{
+              marginHorizontal: 20, 
+              marginVertical: 1, 
+              fontSize: 19
+            }} 
+            name='eyeo'
+          /> 
           <TouchableOpacity onPress={() => {}}>
             <Text style={{color:'#181818', fontWeight: '700'}}>Olvidaste</Text>
           </TouchableOpacity>
-        </View> 
+        </View>
+        
         <TouchableOpacity style={styles.btnLogin} onPress={() => {login(email, password)}}>
           <Text style={{textAlign: 'center', color: '#fff', fontWeight: '700'}}>Iniciar Sesion</Text>
         </TouchableOpacity>

@@ -22,9 +22,11 @@ const HomeScreen = ({navigation}) => {
   })
 
   const {userInfo} = useContext(AuthContext)
+  const verify = userInfo.user.RoleId
 
-  return (
-    <SafeAreaView style={styles.safeArea}>
+  if(verify === 1){
+    return(
+      <SafeAreaView style={styles.safeArea}>
       <View style={styles.view}>
         <Text style={styles.text}>Hello, {userInfo.user.correo}</Text>
         <TouchableOpacity onPress={() => {navigation.openDrawer()}}>
@@ -32,6 +34,7 @@ const HomeScreen = ({navigation}) => {
         </TouchableOpacity>
        </View>
       <ScrollView style={styles.scrollView}>
+
       
        <View style={styles.viewSearch}>
         <MaterialIcons style={styles.search} name='search' size={20} color='#181818'/>
@@ -58,7 +61,61 @@ const HomeScreen = ({navigation}) => {
        
       </ScrollView>
     </SafeAreaView>
-  )
+    )
+  }
+  else if(verify === 2) {
+    return( 
+      <SafeAreaView style={styles.safeArea}>
+      <View style={styles.view}>
+        <Text style={styles.text}>Hello, {userInfo.user.correo}</Text>
+        <TouchableOpacity onPress={() => {navigation.openDrawer()}}>
+          <MaterialIcons style={styles.icon} name='person' size={25}/>
+        </TouchableOpacity>
+       </View>
+      <ScrollView style={styles.scrollView}>
+
+      
+       <View style={styles.viewSearch}>
+        <MaterialIcons style={styles.search} name='search' size={20} color='#181818'/>
+        <TextInput placeholder='Search'/>
+       </View>
+
+         {Data.map(dat =>
+          <TweetCard 
+            key={dat.id}
+            prof={dat.prof}
+            id={dat.id}
+            name={dat.name}
+            tweet={dat.tweet}
+            like={dat.like}
+            reply={dat.reply}
+            onPress={() => navigation.navigate('PostId', {
+              name: dat.name,
+              id: dat.id,
+              tweet: dat.tweet
+            })
+            }
+          />
+          )}
+       
+      </ScrollView>
+    </SafeAreaView>
+    )
+  }
+  else if(verify === 3){
+    return(
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.view}>
+           <Text style={styles.text}>Hello, {userInfo.user.correo}</Text>
+           <TouchableOpacity onPress={() => {navigation.openDrawer()}}>
+             <MaterialIcons style={styles.icon} name='person' size={25}/>
+           </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    )
+  }
+
+  
 }
 
 const styles = StyleSheet.create({

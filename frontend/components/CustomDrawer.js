@@ -9,13 +9,14 @@ import { AuthContext } from '../context/AuthContext'
 
 const CustomDrawer = (props) => {
   const {logout} = useContext(AuthContext)
+  const {userInfo} = useContext(AuthContext)
   return (
     <View style={styles.container}>
         <DrawerContentScrollView 
             {...props}
             contentContainerStyle={{backgroundColor: '#181818'}}>
              <AntDesign style={styles.user} name='user' color='#fff' size={40}/>
-             <Text style={styles.textUser}>Josue Hernandez</Text>
+             <Text style={styles.textUser}>{userInfo.user.correo}</Text>
              <View style={styles.viewItemList}>
                 <DrawerItemList {...props} />
              </View>
