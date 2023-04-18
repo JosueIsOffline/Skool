@@ -29,6 +29,11 @@ const HomeStack = () => {
           options={({route}) => ({
             title: route.params?.name,
            })}/>
+        <Stack.Screen 
+          component={RegisterUser}
+          name="CreateUsers"
+          options={{headerShown: true, headerTitle: 'Create Users'}}
+        />
       </Stack.Navigator>
     )
 }
@@ -96,13 +101,6 @@ const TabNavigator = () => {
                         <FontAwesome5 name='list-alt' color={color} size={size} />
                     )
                 }}/>
-                <Tab.Screen name='CreateUsers' component={RegisterUser} options={{
-                    tabBarIcon: ({color, size}) => (
-                        <FontAwesome5 name='users' color={color} size={size} />
-                    )
-                }}
-                
-                />
             </Tab.Navigator>
         )
     }
@@ -115,6 +113,9 @@ const getTabBarVisibility = route => {
     // console.log(routeName)
 
     if(routeName == 'PostId') {
+        return 'none'
+    }
+    else if(routeName == 'CreateUsers'){
         return 'none'
     }
     return 'flex'

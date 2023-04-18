@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { AntDesign, Feather } from '@expo/vector-icons'
+import { AntDesign, Feather, MaterialIcons } from '@expo/vector-icons'
 import { TextInput } from 'react-native-gesture-handler'
 
 
@@ -30,7 +30,7 @@ const Input = ({
               ? '#0541E1'
               : '#6C6C6C'},
         ]}>
-        <AntDesign name={iconName} style={{
+        <MaterialIcons name={iconName} style={{
             fontSize: 22,
             color: '#0541E1',
             marginRight: 10

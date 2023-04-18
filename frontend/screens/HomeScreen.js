@@ -111,6 +111,14 @@ const HomeScreen = ({navigation}) => {
              <MaterialIcons style={styles.icon} name='person' size={25}/>
            </TouchableOpacity>
         </View>
+
+        <ScrollView style={styles.scrollView}>
+            <TouchableOpacity onPress={() => {navigation.navigate('CreateUsers')}}>
+                <Text>A</Text>
+            </TouchableOpacity>
+
+        </ScrollView>
+
       </SafeAreaView>
     )
   }
