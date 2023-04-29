@@ -4,14 +4,14 @@ const {sign} = require('jsonwebtoken')
 
 
 export const postUser = async (req, res) => {
-    const { correo, clave, PersonId, RoleId }= req.body
+    const { correo, clave, PersonId, RoleId, CursotallerId }= req.body
     await bycrypt.hash(clave, 10).then((hash) => {
          User.create({
             correo: correo,
             clave: hash,
+            CursotallerId: CursotallerId,
             PersonId: PersonId,
             RoleId: RoleId
-
         })
         res.json('USUARIO CREADO CON EXITO!!')
     })

@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../config";
+import { Alert } from "react-native";
 
 export const AuthContext = createContext()
 
@@ -9,6 +10,7 @@ export const AuthProvider = ({children}) => {
     const [isLoading, setIsLoading] = useState(false)
     const [userToken, setUserToken] = useState(null)
     const [userInfo, setUserInfo] = useState(null)
+    const [PersonId, setPersonId] = useState(null)
 
     const login = (correo, clave) => {
         setIsLoading(true)
@@ -65,8 +67,68 @@ export const AuthProvider = ({children}) => {
         isLoggedIn()
     }, [])
 
+    const registerPeople = (
+        nombre,
+        apellido,
+        f_nacimiento,
+        sexo,
+        direccion,
+        telefono
+    ) => {
+        axios.post(`${BASE_URL}/people` ,{
+             nombre,
+             apellido,
+             f_nacimiento,
+             sexo,
+             direccion,
+             telefono
+        })
+        .then(res => {
+            setPersonId(res.data)
+        })
+        .catch(e => {
+            console.log(`Login error ${e}`)
+        })
+
+        // console.log(`${nam} \n ${lastanme} \n ${borndate} \n ${sex} \n ${direction} \n ${telephone}`)
+    }
+
+    const registerLogin = (correo, clave, CursotallerId, RoleId) => {
+        axios.post(`${BASE_URL}/auth`, {
+            correo, 
+            clave,
+            CursotallerId,
+            PersonId,
+            RoleId
+        })
+        .then(res => {
+            //Alert.alert('Success', res.data)
+        })
+        .catch(e => {
+            console.log(`Error: ${e}`)
+        })
+    }
+
+
+    const listStudent = (setUser) => {
+        axios.get(`${BASE_URL}/people`).then(res => {
+            
+        }).catch(e => {
+            console.log(e)
+        })
+    }
+
     return (
-        <AuthContext.Provider value={{login, logout, isLoading, userToken, userInfo}}>
+        <AuthContext.Provider value={{
+            login,
+            logout, 
+            isLoading, 
+            userToken, 
+            userInfo, 
+            registerPeople, 
+            registerLogin,
+            listStudent
+        }}>
             {children}
         </AuthContext.Provider>
     )

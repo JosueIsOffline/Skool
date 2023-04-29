@@ -58,6 +58,11 @@ const TabNavigator = () => {
                         <Ionicons name='home-outline' color={color} size={size} />
                     )
                 })}/>
+                <Tab.Screen name='ListStudent' component={ListStudentsScreen} options={{
+                    tabBarIcon: ({color, size}) => (
+                        <FontAwesome5 name='list-alt' color={color} size={size} />
+                    )
+                }}/>
             </Tab.Navigator>
         )
     }

@@ -7,6 +7,7 @@ export const getPeople = async (req, res) => {
 
 export const postPerson = async (req, res) => {
     const postPerson = req.body
-    await Person.create(postPerson)
-    res.json(postPerson)
+    const newPerson = await Person.create(postPerson)
+    const latestId = newPerson.id
+    res.json(latestId)
 }

@@ -1,10 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
     const Person = sequelize.define("Person", {
-        n_identidad: {
-            type: DataTypes.BIGINT(11),
-            allowNull: false
-        },
         nombre: {
             type: DataTypes.STRING,
             allowNull: false

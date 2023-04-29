@@ -7,21 +7,19 @@ import { onChange } from 'react-native-reanimated'
 const CustomDropdown = ({ 
     label, 
     placeholder,
+    heightt,
     data = [],
     value = {}, 
     onSelect = () => {}
 }) => {
 
     const provider = () => {
-        if(label == 'Sex') {
-            return sex
-        } else if(label == 'Role') {
-            return role
-        }
+      
     }
 
     const [selectedItem, setSelectedItem] = useState(placeholder)
     const [isClicked, setIsClicked] = useState(false)
+    
 
 
   return (
@@ -51,7 +49,7 @@ const CustomDropdown = ({
       </TouchableOpacity>
 
       {isClicked ? 
-        <View style={styles.dropdownArea}>
+        <View style={[styles.dropdownArea, {height: heightt}]}>
             {data.map((item, index) => (
                 <TouchableOpacity
                     key={String(index)}
@@ -104,7 +102,6 @@ const styles = StyleSheet.create({
     },
     dropdownArea: {
         width: '100%',
-        height: 190,
         borderRadius: 13,
         marginTop: 20,
         backgroundColor: '#fff',
