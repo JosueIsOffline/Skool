@@ -11,6 +11,7 @@ import PostById from '../screens/PostById'
 import RegisterUser from "../screens/Admin/RegisterUser";
 
 import { AuthContext } from "../context/AuthContext";
+import SelectGrade from "../screens/SelectGrade";
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -33,6 +34,15 @@ const HomeStack = () => {
           component={RegisterUser}
           name="CreateUsers"
           options={{headerShown: true, headerTitle: 'Create Users'}}
+        />
+        <Stack.Screen 
+          component={ListStudentsScreen}
+          name="ListStudents"
+          options={({id}) => ({
+            headerShown: false
+          })
+            
+         }
         />
       </Stack.Navigator>
     )
@@ -58,7 +68,7 @@ const TabNavigator = () => {
                         <Ionicons name='home-outline' color={color} size={size} />
                     )
                 })}/>
-                <Tab.Screen name='ListStudent' component={ListStudentsScreen} options={{
+                <Tab.Screen name='SelectGrade' component={SelectGrade} options={{
                     tabBarIcon: ({color, size}) => (
                         <FontAwesome5 name='list-alt' color={color} size={size} />
                     )

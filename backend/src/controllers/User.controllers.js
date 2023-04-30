@@ -1,4 +1,4 @@
-const { User, Person } = require('../../models')
+const { User, Person, sequelize } = require('../../models')
 const bycrypt = require('bcrypt')
 const {sign} = require('jsonwebtoken')
 
@@ -58,4 +58,21 @@ const Home =  async (req, res, id) => {
         nombre: info.nombre,
         apellido: info.apellido
     })
+}
+
+export const listStudent = async (req, res) => {
+    const id = req.params.id
+    const students = await User.findAll({ where: {
+        CursotallerId: id
+    }
+    })
+    res.json(students)
+}
+
+export const counter = async (req, res) => {
+    const count = await sequelize.query('SELECT COUNT(*) as total_student FROM users WHERE CursotallerId = 3', {
+        model: User,
+        mapToModel: true
+    })
+    res.json(count)
 }
