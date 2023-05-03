@@ -6,7 +6,7 @@ import { BASE_URL } from '../../config'
 import { AntDesign } from '@expo/vector-icons'
 
 
-const ListStudentsScreen = ({route}) => {
+const ListStudentsScreen = ({route, navigation}) => {
 
 
   
@@ -26,7 +26,9 @@ const ListStudentsScreen = ({route}) => {
   
   const oneStudent = ({item}) => {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Calificaciones', {
+        id: item.id
+      })}>
         <View style={styles.item}>
         <View style={styles.avatarContainer}>
           <AntDesign style={styles.icon}size={50} name='user'/>

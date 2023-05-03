@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome5, Ionicons } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 import HomeScreen from "../screens/HomeScreen";
 import ListStudentsScreen from "../screens/Admin/ListStudentsScreen";
@@ -12,6 +12,8 @@ import RegisterUser from "../screens/Admin/RegisterUser";
 
 import { AuthContext } from "../context/AuthContext";
 import SelectGrade from "../screens/SelectGrade";
+import CalificacionesScreen from "../screens/CalificacionesScreen"
+import GradesScreen from "../screens/GradeScreen";
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -41,8 +43,12 @@ const HomeStack = () => {
           options={({id}) => ({
             headerShown: false
           })
-            
          }
+        />
+        <Stack.Screen 
+          component={CalificacionesScreen}
+          name="Calificaciones"
+          options={{headerShown: true, headerTitle: 'Qualifications'}}
         />
       </Stack.Navigator>
     )
@@ -92,6 +98,13 @@ const TabNavigator = () => {
                         <Ionicons name='home-outline' color={color} size={size} />
                     )
                 })}/>
+                <Tab.Screen name='GradesScreen' component={GradesScreen} options={({route}) => ({
+                    tabBarStyle: {display: getTabBarVisibility(route)},
+                    tabBarBadgeStyle: {marginTop: 20},
+                    tabBarIcon: ({color, size}) => (
+                        <MaterialIcons name='grade' color={color} size={size} />
+                    )
+                })}/>
             </Tab.Navigator>
         )
     }
@@ -111,7 +124,7 @@ const TabNavigator = () => {
                         <Ionicons name='home-outline' color={color} size={size} />
                     )
                 })}/>
-                <Tab.Screen name='ListStudent' component={ListStudentsScreen} options={{
+                <Tab.Screen name='SelectGrade' component={SelectGrade} options={{
                     tabBarIcon: ({color, size}) => (
                         <FontAwesome5 name='list-alt' color={color} size={size} />
                     )
@@ -131,6 +144,9 @@ const getTabBarVisibility = route => {
         return 'none'
     }
     else if(routeName == 'CreateUsers'){
+        return 'none'
+    }
+    else if(routeName == 'Calificaciones'){
         return 'none'
     }
     return 'flex'

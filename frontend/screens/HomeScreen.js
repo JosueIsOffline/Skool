@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     padding: 8
   },
   text: {
-    fontSize: 16
+    fontSize: 14
   },
   search: {
     marginRight: 5

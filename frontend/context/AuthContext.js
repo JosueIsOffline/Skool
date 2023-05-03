@@ -11,6 +11,7 @@ export const AuthProvider = ({children}) => {
     const [userToken, setUserToken] = useState(null)
     const [userInfo, setUserInfo] = useState(null)
     const [PersonId, setPersonId] = useState(null)
+    const [id, setId] = useState(null)
 
     const login = (correo, clave) => {
         setIsLoading(true)
@@ -102,7 +103,7 @@ export const AuthProvider = ({children}) => {
             RoleId
         })
         .then(res => {
-            //Alert.alert('Success', res.data)
+            Alert.alert('Success', res.data)
         })
         .catch(e => {
             console.log(`Error: ${e}`)
@@ -118,6 +119,13 @@ export const AuthProvider = ({children}) => {
         })
     }
 
+    const prub = () => {
+        axios.get(`${BASE_URL}/verifyp/${EstudianteId}`)
+        .then(res => {
+           setId(res.data[0].id)
+        })
+      }
+
     return (
         <AuthContext.Provider value={{
             login,
@@ -127,7 +135,10 @@ export const AuthProvider = ({children}) => {
             userInfo, 
             registerPeople, 
             registerLogin,
-            listStudent
+            listStudent, 
+            prub,
+            id
+
         }}>
             {children}
         </AuthContext.Provider>
