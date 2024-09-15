@@ -66,7 +66,7 @@ const CalificacionesScreen = ({route}) => {
   useEffect(() => {
     Axios.get(`${BASE_URL}/verifyp/${EstudianteId}`)
     .then(res => {
-      num = res.data[0].id
+      //num = res.data[0].id
       console.log(num)
     })
   }, [])

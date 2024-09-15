@@ -374,9 +374,6 @@ const RegisterUser = ({navigation}) => {
                 value={selectedGrade}
               />
              
-
-              
-  
               <Button title='Register' onPress={validate}/>
           </View>
  

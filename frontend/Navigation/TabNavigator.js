@@ -14,6 +14,7 @@ import { AuthContext } from "../context/AuthContext";
 import SelectGrade from "../screens/SelectGrade";
 import CalificacionesScreen from "../screens/CalificacionesScreen"
 import GradesScreen from "../screens/GradeScreen";
+import CreatePostScreen from "../screens/CreatePostScreen";
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -49,6 +50,11 @@ const HomeStack = () => {
           component={CalificacionesScreen}
           name="Calificaciones"
           options={{headerShown: true, headerTitle: 'Qualifications'}}
+        />
+        <Stack.Screen 
+          component={CreatePostScreen}
+          name="CreatePostScreen"
+          options={{headerShown: false, headerTitle: ''}}
         />
       </Stack.Navigator>
     )

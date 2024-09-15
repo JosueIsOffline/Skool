@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useRef } from 'react'
 import { 
   View, 
   Text, 
@@ -12,15 +12,13 @@ import { MaterialIcons, FontAwesome, FontAwesome5 } from '@expo/vector-icons'
 import TweetCard from '../components/TweetCard'
 import { Data } from '../mock/Data'
 import { AuthContext } from '../context/AuthContext'
+import FloatingButton from '../components/FloatingButton'
 
 
 
 const HomeScreen = ({navigation}) => {
 
-  useEffect(() => {
-    
-  })
-
+  
   const {userInfo} = useContext(AuthContext)
   const verify = userInfo.user.RoleId
 
@@ -97,8 +95,9 @@ const HomeScreen = ({navigation}) => {
             }
           />
           )}
-       
+          
       </ScrollView>
+      <FloatingButton onPress={() => {navigation.navigate('CreatePostScreen')}}/>
     </SafeAreaView>
     )
   }
@@ -114,7 +113,7 @@ const HomeScreen = ({navigation}) => {
 
         <ScrollView style={styles.scrollView}>
             <TouchableOpacity onPress={() => {navigation.navigate('CreateUsers')}}>
-                <Text>A</Text>
+                <Text>Register User</Text>
             </TouchableOpacity>
 
         </ScrollView>
